@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, status
 from pydantic import BaseModel
 
 
@@ -68,7 +68,7 @@ async def get_track_by_id(track_id: int):
     for track in tracks:
         if track["id"] == track_id:
             return track
-    raise HTTPException(status_code=404, detail="Track not found")
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Track not found")
 
 
 @router.post("")
